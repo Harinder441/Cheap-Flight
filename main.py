@@ -1,6 +1,3 @@
-#how often i should run the project
-#Update to indian
-
 from datetime import datetime, timedelta
 from data_manager import DataManager
 from flight_search import FlightSearch
@@ -10,7 +7,7 @@ data_manager = DataManager()
 sheet_data = data_manager.get_destination_data()
 flight_search = FlightSearch()
 
-ORIGIN_CITY_IATA = "DEL"
+ORIGIN_CITY_IATA = YOUR_ORIGIN_CITY_IATA
 
 
 def update_sheet():
@@ -19,7 +16,7 @@ def update_sheet():
     data_manager.destination_data = sheet_data
     data_manager.update_destination_codes()
 
-
+#Update IATA codes in your sheet once
 # update_sheet()
 
 tomorrow = datetime.now() + timedelta(days=1)
@@ -36,6 +33,6 @@ for destination in sheet_data:
     print(sms.msg)
     if flight.price<=destination['lowestPrice']:
         print("ok")
-        # sms = NotificationManager(FlightData=flight)
-        # sms.send_massage()
+        sms = NotificationManager(FlightData=flight)
+        sms.send_massage()
 
