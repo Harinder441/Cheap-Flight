@@ -2,12 +2,13 @@ import requests
 from flight_data import FlightData
 from pprint import pprint
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
-TEQUILA_API_KEY = "pXQZHiaMY1MlplFpbDFelnpJpTPfDHU3"
+TEQUILA_API_KEY = YOUR-API-KEY
 
 
 class FlightSearch:
 
     def get_destination_code(self, city_name):
+        """get IATA code for the city name"""
         location_endpoint = f"{TEQUILA_ENDPOINT}/locations/query"
         headers = {"apikey": TEQUILA_API_KEY}
         query = {"term": city_name, "location_types": "city"}
@@ -18,6 +19,7 @@ class FlightSearch:
         return code
 
     def check_flights(self, origin_city_code, destination_city_code, from_time, to_time):
+        """give list of flights from your place to destination """
         headers = {"apikey": TEQUILA_API_KEY}
         query = {
             "fly_from": origin_city_code,
@@ -56,6 +58,7 @@ class FlightSearch:
         print(f"{flight_data.destination_city}: £{flight_data.price}")
         return flight_data
 if __name__ == "__main__":
+    #example
     a = FlightSearch()
     my_list =["Thiruvananthapuram","Kolkata","Chennai","Guwahati","Ahmedabad","Mumbai"]
     for city in my_list:
