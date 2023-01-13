@@ -1,7 +1,7 @@
 from twilio.rest import Client
 
-account_sid = 'AC6cfe0cdea4775d8cadfd4e2023228325'
-auth_token = '9950f4656985fc96fdac23b7ea65e520'
+account_sid = YOUR_TWILLIO_SID
+auth_token = YOUR_AUTH_TOKEN
 
 
 class NotificationManager:
@@ -11,13 +11,13 @@ class NotificationManager:
                    f"to fly from {FlightData.origin_city}-{FlightData.origin_airport} to " \
                    f"{FlightData.destination_city}-{FlightData.destination_airport},from " \
                    f"{FlightData.out_date} to {FlightData.return_date}"
-        self.to_list = "+918901116612"
+        self.to_list = RECIEVERS_MOBILE_NUMBER
 
     def send_massage(self):
         client = Client(account_sid, auth_token)
         message = client.messages.create(
             body=self.msg,
-            from_='+18059024520',
+            from_= YOUR_TWILIO_MOBILE_NUMBER,
             to=self.to_list,
         )
         print(message.status)
